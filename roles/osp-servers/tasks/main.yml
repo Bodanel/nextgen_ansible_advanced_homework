@@ -35,3 +35,5 @@
     wait: true
     timeout: 180
   loop: "{{ osp_servers.name }}"
+  loop_control:
+    loop_var: server 
