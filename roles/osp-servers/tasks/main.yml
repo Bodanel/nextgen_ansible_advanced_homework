@@ -6,23 +6,24 @@
 - name: Create the QA servers on OSP
   os_server:
     cloud: openstack
-    name: "{{ item }}"
-    state: "{{ item.state }}"
-    image: "{{ item.image }}"
-    key_name: "{{ item.key_name }}"
-    flavor: "{{ item.flavor }}"
-    security_groups: "{{ item.security_group }}"
+    name: "{{ server.name }}"
+    state: "{{ server.state }}"
+    image: "{{ server.image }}"
+    key_name: "{{ server.key_name }}"
+    flavor: "{{ server.flavor }}"
+    security_groups: "{{ server.security_group }}"
     delete_fip: yes
     wait: no
     nics:
       - net-name: int_network
-    meta: "{{ item.meta }}"
+    #meta: "{{ server.meta }}"
     userdata: |
       #!/bin/bash
       curl -o /tmp/openstack.pub http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pub
       cat /tmp/openstack.pub >> /home/cloud-user/.ssh/authorized_keys
-  loop: 
-    - "{{ osp_servers }}"
+  loop: "{{ osp_servers }}"
+  loop_control:  
+    loop_var: server 
 
 - name: "Adding floating ip to {{ item }}"
   os_floating_ip:
