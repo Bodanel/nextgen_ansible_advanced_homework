@@ -23,9 +23,9 @@
     ssh_key_data: "/root/.ssh/openstack.pem"
     username: cloud-user
 
-- name:  Create an authentication token which should be removed at the end of the role
-  command: |
-    tower-cli login "{{ user_name }}" --password "{{ password }}" 
+#- name:  Create an authentication token which should be removed at the end of the role
+#  command: |
+#    tower-cli login "{{ user_name }}" --password "{{ password }}" 
 
 - name: Create Inventory
   command: |
