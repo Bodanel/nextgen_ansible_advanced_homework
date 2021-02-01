@@ -34,6 +34,6 @@
     network: ext_network
     wait: true
     timeout: 180
-  loop: "{{ osp_servers.name }}"
+  loop: "{{ osp_servers }}"
   loop_control:
     loop_var: server 
