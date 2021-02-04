@@ -1,4 +1,8 @@
 - hosts: workstation
+  loop: "{{ osp_servers }}"
+  loop_control:
+    loop_var: server 
+
   gather_facts: true
   roles:
   - name: osp-facts

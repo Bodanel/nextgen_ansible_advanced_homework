@@ -21,6 +21,7 @@
       #!/bin/bash
       curl -o /tmp/openstack.pub http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pub
       cat /tmp/openstack.pub >> /home/cloud-user/.ssh/authorized_keys
+      curl -o etc/yum.repos.d/internal.repo http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo
   loop: "{{ osp_servers }}"
   loop_control:  
     loop_var: server 
@@ -37,3 +38,13 @@
   loop: "{{ osp_servers }}"
   loop_control:
     loop_var: server 
+
+- name: "Add the second public key"
+  authorized_key:
+    user: cloud-user
+    state: present
+    key: "{{ lookup('file', '/root/.ssh/mykey.pub') }}"
+  loop: "{{ osp_servers }}"
+  loop_control:
+    loop_var: server 
+

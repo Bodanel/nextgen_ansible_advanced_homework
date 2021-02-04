@@ -15,4 +15,10 @@
 
  
 - name: install base tools and packages
-
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - httpd
+    - tomcat
+    - haproxy
