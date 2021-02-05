@@ -39,12 +39,12 @@
   loop_control:
     loop_var: server 
 
-- name: "Add the second public key"
-  authorized_key:
-    user: cloud-user
-    state: present
-    key: "{{ lookup('file', '/root/.ssh/mykey.pub') }}"
-  loop: "{{ osp_servers }}"
-  loop_control:
-    loop_var: server 
+#- name: "Add the second public key"
+#  authorized_key:
+#    user: cloud-user
+#    state: present
+#    key: "{{ lookup('file', '/root/.ssh/mykey.pub') }}"
+#  loop: "{{ osp_servers }}"
+#  loop_control:
+#    loop_var: server 
 
