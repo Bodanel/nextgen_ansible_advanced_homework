@@ -11,14 +11,21 @@
 - name: enable repos
   template:
     src: repos_template.j2
-    dest: /etc/yum.repos.d/internal.repo
+    dest: "{{ repo_file }}"
 
  
 - name: install base tools and packages
   package:
     name: "{{ item }}"
     state: present
-  loop:
-    - httpd
-    - tomcat
-    - haproxy
+  loop: "{{ packages }}"
+
+
+- name: deploy httpd index.html file
+  template:
+    src: index.html.j2
+    dest: "{{ index_file }}"
+  notify:
+    - "start {{ payload }}"
+
+    

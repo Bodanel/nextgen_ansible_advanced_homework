@@ -1,3 +1,8 @@
 ---
-
+- name: deploy load balancer configuration file
+  template:
+    src: haproxy.cfg.j2
+    dest: "{{ lb_config_file }}"
+  notify:
+    - "start {{ payload }}"
 

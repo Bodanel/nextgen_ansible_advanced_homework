@@ -1,1 +1,2 @@
 payload: haproxy
+lb_config_file: /etc/haproxy/haproxy.cfg

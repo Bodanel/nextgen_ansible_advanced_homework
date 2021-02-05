@@ -1,0 +1,6 @@
+packages:
+  - haproxy
+  - tomcat
+  - httpd
+repo_file: /etc/yum.repos.d/internal.repo
+payload: httpd
